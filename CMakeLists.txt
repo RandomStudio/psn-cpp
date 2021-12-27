@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.10)
 
 project(PosiStageNet)
 
+SET(BUILD_STATIC_LIBS ON) 
+add_subdirectory(examples/cmake/libsocket)
+
+target_link_libraries(PosiStageNet libsocket_int) # C linking
+
 # Since this is a header-only library, 
 # see http://mariobadr.com/creating-a-header-only-library-with-cmake.html
 # and https://cmake.org/cmake/help/latest/command/add_library.html#interface-libraries
