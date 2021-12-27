@@ -1,0 +1,3 @@
+[submodule "examples/cmake/libsocket"]
+	path = examples/cmake/libsocket
+	url = https://github.com/dermesser/libsocket.git
