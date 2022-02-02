@@ -34,6 +34,7 @@
 #include <chrono>
 #include <thread>
 
+const std::string      MULTICAST_GROUP = "236.10.10.10";
 const uint16_t           PORT         = 56565;
 static const short    BUFLEN       = 1024;
 static const uint32_t TIMEOUT_MSEC = 1000;
@@ -48,7 +49,9 @@ int main( void )
     // Init "client" (RECEIVE)
 
     auto mcast_listen_socket = kissnet::udp_socket();
-	mcast_listen_socket.join(kissnet::endpoint("236.10.10.10", 56565), "0.0.0.0");
+	mcast_listen_socket.join(kissnet::endpoint(MULTICAST_GROUP, PORT), "0.0.0.0");
+
+    std::cout << "Connecting using multicast @ " << MULTICAST_GROUP << ":" << PORT << " ..." << std::endl;
     
     kn::buffer<1024> recv_buff;
 
