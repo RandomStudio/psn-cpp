@@ -35,8 +35,8 @@
 #include <chrono>
 #include <thread>
 
-const char * HOST = "127.0.0.1";
-const uint16_t  PORT = 8888;
+const char * MULTICAST_GROUP = "236.10.10.10";
+const uint16_t PORT = 56565;
 
 namespace kn = kissnet;
 
@@ -45,8 +45,8 @@ int main( void )
     //====================================================
     // Init "server" (SENDs)
 
-    kissnet::udp_socket mcast_send_socket(kissnet::endpoint("236.10.10.10", 56565));
-    std::cout << "init socket OK" << std::endl;
+    kissnet::udp_socket mcast_send_socket(kissnet::endpoint(MULTICAST_GROUP, PORT));
+    std::cout << "sending multicast @" << MULTICAST_GROUP << ":" << PORT << std::endl;
 
     ::psn::psn_encoder psn_encoder( "Test PSN Server" ) ;
 
