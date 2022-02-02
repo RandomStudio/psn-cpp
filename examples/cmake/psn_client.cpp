@@ -46,7 +46,7 @@ int main( void )
     //====================================================
     // Init "client" (RECEIVE)
 
-    auto mcast_listen_socket = kissnet::udp_socket(kissnet::endpoint("0.0.0.0", PORT));
+    auto mcast_listen_socket = kissnet::udp_socket(kissnet::endpoint("192.168.11.201", PORT));
 	// mcast_listen_socket.join(kissnet::endpoint(MULTICAST_GROUP, PORT));
     mcast_listen_socket.set_multicast("236.10.0.10", "192.168.11.201");
     mcast_listen_socket.bind();
