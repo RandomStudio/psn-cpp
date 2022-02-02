@@ -39,21 +39,19 @@ const uint16_t           PORT         = 56565;
 static const short    BUFLEN       = 1024;
 static const uint32_t TIMEOUT_MSEC = 1000;
 
-namespace kn = kissnet;
-
 int main( void )
-{
+{   
      char char_buf[BUFLEN];
 
     //====================================================
     // Init "client" (RECEIVE)
 
-    auto mcast_listen_socket = kissnet::udp_socket();
-	mcast_listen_socket.join(kissnet::endpoint(MULTICAST_GROUP, PORT), "0.0.0.0");
+    auto mcast_listen_socket = kissnet::udp_socket(kissnet::endpoint("0.0.0.0", PORT));
+	mcast_listen_socket.join(kissnet::endpoint(MULTICAST_GROUP, PORT));
 
     std::cout << "Connecting using multicast @ " << MULTICAST_GROUP << ":" << PORT << " ..." << std::endl;
     
-    kn::buffer<1024> recv_buff;
+    kissnet::buffer<1024> recv_buff;
 
     ::psn::psn_decoder psn_decoder ;
     uint8_t last_frame_id = 0 ;
