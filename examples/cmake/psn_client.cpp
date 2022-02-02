@@ -48,7 +48,7 @@ int main( void )
     // Init "client" (RECEIVE)
 
     auto mcast_listen_socket = kissnet::udp_socket();
-	mcast_listen_socket.join(kissnet::endpoint("236.10.10.10", 56565));
+	mcast_listen_socket.join(kissnet::endpoint("236.10.10.10", 56565), "0.0.0.0");
     
     kn::buffer<1024> recv_buff;
 
