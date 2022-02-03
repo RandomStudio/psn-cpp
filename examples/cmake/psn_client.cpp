@@ -34,10 +34,9 @@
 #include <chrono>
 #include <thread>
 
-const std::string      MULTICAST_GROUP = "236.10.10.10";
-const uint16_t           PORT         = 56565;
-static const short    BUFLEN       = 1024;
-static const uint32_t TIMEOUT_MSEC = 1000;
+const auto MULTICAST_GROUP = "236.10.10.10";
+const uint64_t PORT = 56565;
+static const short BUFLEN = 1024;
 
 int main( void )
 {   
@@ -46,10 +45,8 @@ int main( void )
     //====================================================
     // Init "client" (RECEIVE)
 
-    auto mcast_listen_socket = kissnet::udp_socket(kissnet::endpoint("0.0.0.0", PORT));
-	// mcast_listen_socket.join(kissnet::endpoint(MULTICAST_GROUP, PORT));
-    mcast_listen_socket.set_multicast("236.10.10.10", "0.0.0.0");
-    mcast_listen_socket.bind();
+    auto mcast_listen_socket = kissnet::udp_socket();
+    mcast_listen_socket.join(kissnet::endpoint(MULTICAST_GROUP, PORT));
 
     std::cout << "Connecting using multicast @ " << MULTICAST_GROUP << ":" << PORT << " ..." << std::endl;
     
@@ -61,9 +58,9 @@ int main( void )
 
     //====================================================
     // Main loop
-    while ( 1 ) 
+    while ( true ) 
     {
-        std::this_thread::sleep_for(std::chrono::milliseconds(1) );
+        // std::this_thread::sleep_for(std::chrono::milliseconds(1) );
 
         printf("Waiting for data...");
         fflush(stdout);
