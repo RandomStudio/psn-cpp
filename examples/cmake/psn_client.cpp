@@ -46,9 +46,9 @@ int main( void )
     //====================================================
     // Init "client" (RECEIVE)
 
-    auto mcast_listen_socket = kissnet::udp_socket(kissnet::endpoint("192.168.11.201", PORT));
+    auto mcast_listen_socket = kissnet::udp_socket(kissnet::endpoint("0.0.0.0", PORT));
 	// mcast_listen_socket.join(kissnet::endpoint(MULTICAST_GROUP, PORT));
-    mcast_listen_socket.set_multicast("236.10.10.10", "192.168.11.201");
+    mcast_listen_socket.set_multicast("236.10.10.10", "0.0.0.0");
     mcast_listen_socket.bind();
 
     std::cout << "Connecting using multicast @ " << MULTICAST_GROUP << ":" << PORT << " ..." << std::endl;
